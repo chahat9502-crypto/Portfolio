@@ -1209,63 +1209,6 @@ if (
 
 }
 
-
-
-/* =========================================================
-   RESUME VIEW + FORCE DOWNLOAD FIX
-========================================================= */
-
-const viewResumeBtn = $("#viewResumeBtn");
-
-if (viewResumeBtn) {
-  viewResumeBtn.addEventListener("click", (event) => {
-    event.preventDefault();
-
-    const resumeUrl = viewResumeBtn.getAttribute("href");
-    const absoluteResumeUrl = new URL(resumeUrl, window.location.href).href;
-
-    const newTab = window.open(absoluteResumeUrl, "_blank", "noopener,noreferrer");
-
-    // Fallback: if browser blocks the new tab, open the PDF in the current tab.
-    if (!newTab) {
-      window.location.href = absoluteResumeUrl;
-    }
-  });
-}
-
-const downloadResumeBtn = $("#downloadResumeBtn");
-
-if (downloadResumeBtn) {
-  downloadResumeBtn.addEventListener("click", async (event) => {
-    event.preventDefault();
-
-    const resumeUrl = downloadResumeBtn.getAttribute("href");
-    const fileName = downloadResumeBtn.getAttribute("download") || "Chahat-Singh-Resume.pdf";
-
-    try {
-      const response = await fetch(resumeUrl, { cache: "no-store" });
-
-      if (!response.ok) {
-        throw new Error("Resume file not found");
-      }
-
-      const blob = await response.blob();
-      const blobUrl = URL.createObjectURL(blob);
-      const tempLink = document.createElement("a");
-
-      tempLink.href = blobUrl;
-      tempLink.download = fileName;
-      document.body.appendChild(tempLink);
-      tempLink.click();
-      tempLink.remove();
-
-      setTimeout(() => URL.revokeObjectURL(blobUrl), 1000);
-    } catch (error) {
-      alert("Resume file nahi mili. Check karo ki resume.pdf portfolio.html ke same folder me hai.");
-    }
-  });
-}
-
 $$('a[download]').forEach(button => {
 
   button.addEventListener(
