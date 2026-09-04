@@ -28,6 +28,15 @@ const PROJECTS = [
     live: "https://chahat9502-crypto.github.io/A-responsive-My-Blog-Website/",
     github: "https://github.com/chahat9502-crypto/A-responsive-My-Blog-Website.git"
   },
+  {
+    title: "Responsive Music Player",
+    image: "images/music.png",
+    description:
+      "Responsive music player with playlist and modern controls using HTML, CSS, and JavaScript..",
+    tags: ["HTML5", "CSS3", "JavaScript"],
+    live: " https://chahat9502-crypto.github.io/A-Responsive-Music-Player/",
+    github: "https://github.com/chahat9502-crypto/A-Responsive-Music-Player.git"
+  },
 
 
 ];
